@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  UpdateFW18:
+    image: 192.168.1.147:443/fw-update:3.2.18
+    environment:
+      - SERVICE_NAME=UpdateFW18
+      - CERT_NAME=ca.crt
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - "node.labels.update==FW18"
+      restart_policy:
+        condition: on-failure
+        max_attempts: 1
+    secrets:
+      - Update-Password
+
+secrets:
+  Update-Password:
+    external: true

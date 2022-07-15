@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  Alpine-FW18:
+    image: 192.168.1.147:443/alpine
+    command: "cat /etc/REVISIONS"
+    volumes:
+      - /etc:/etc
+    deploy:
+      mode: global
+      restart_policy:
+        condition: nones

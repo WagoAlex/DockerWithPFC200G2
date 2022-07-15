@@ -1,0 +1,56 @@
+{
+"version": "2",
+"templates":
+[
+  {
+    "type": 1,
+    "title": "provision pfc",
+    "logo": "http://192.168.1.147/swarm.png",
+    "description": "Add PFC to a swarm cluster and a local docker repository",
+    "image": "wagoautomation/provision-pfc-arm32v7:1.0.0",
+    "name": "provision-pfc",
+    "restart_policy": "no",
+    "command": "/home/provision-pfc.sh",
+    "platform": "linux",
+    "volumes": [
+      {
+        "bind": "/tmp",
+        "container": "/tmp"
+      }
+    ],
+	"env": [
+      {
+        "name": "WORKER_IP",
+        "label": "IP Adress of new worker node.",
+        "default": "192.168.1.212"    
+      },
+	  {
+        "name": "MANAGER_IP",
+        "label": "IP Adress of the manager node.",
+        "default": "192.168.1.147"    
+      },
+	  {
+        "name": "CA_PATH",
+        "label": "Folder of the ca file.",
+        "default": "/home/provisionPLC/"    
+      },
+	  	  {
+        "name": "CA_NAME",
+        "label": "Name of the ca file.",
+        "default": "ca.crt"    
+      },
+      {
+        "name": "LABEL",
+        "label": "Stack Label.",
+        "default": "secure=no"    
+      },
+	  {
+        "name": "PASSWORD",
+        "label": "Password new worker node.",
+        "default": "wago"    
+      }
+    ]
+  }
+]
+}
+

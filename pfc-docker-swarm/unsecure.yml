@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  securePFC:
+    image: 192.168.1.147:443/secure:6.0.0
+    command: "/home/undo.sh"
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - "node.labels.secure==no"
+      restart_policy:
+        condition: none
+    secrets:
+      - StandardPassword
+      - NewPassword
+      - StandardRoot
+      - NewRoot
+
+secrets:
+  StandardPassword:
+    external: true
+  NewPassword:
+    external: true
+  StandardRoot:
+      external: true
+  NewRoot:
+    external: true
