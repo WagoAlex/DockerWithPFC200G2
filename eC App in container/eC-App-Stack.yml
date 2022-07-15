@@ -1,0 +1,28 @@
+#####SWARM####
+
+
+
+version: '3.7'
+
+services:
+securePFC:
+image: 192.168.1.147:443/e-runtime-application:1.0.0
+networks:
+- host
+command: "/root/do.sh"
+volumes:
+- /home:/home
+deploy:
+mode: global
+placement:
+constraints:
+- "node.labels.type==app"
+restart_policy:
+condition: none
+
+
+
+networks:
+host:
+name: host
+external: true
